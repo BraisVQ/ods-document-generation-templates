@@ -1,0 +1,25 @@
+name: HTML Lint
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Run Super-Linter
+      uses: github/super-linter@v7
+      env:
+        VALIDATE_HTML: true
+        DEFAULT_WORKSPACE: ${{ github.workspace }}
+        FILES: templates/**/*.html.tmpl
+        OUTPUT_FORMAT: sarif
+    - name: Archive Lint Results
+      uses: actions/upload-artifact@v4
+      with:
+        name: html-lint-results
+        path: super-linter.sarif
