@@ -19,7 +19,7 @@ jobs:
         FILES: templates/**/*.html.tmpl
         OUTPUT_FORMAT: sarif
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Set GitHub token
-        GITHUB_HEAD_REF: ${{ github.head_ref }}   # Set repository branch
+        DEFAULT_BRANCH: main   # Set repository branch
     - name: Archive Lint Results
       uses: actions/upload-artifact@v4
       with:
