@@ -27,6 +27,7 @@ jobs:
         VALIDATE_HTML: true
         FILES: templates/**/*.html.tmpl
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Set GitHub token
+        GITHUB_WORKSPACE: /home/runner/work/ods-document-generation-templates/ods-document-generation-templates # Explicitly set the workspace path
     - name: Archive Lint Results
       uses: actions/upload-artifact@v4
       with:
