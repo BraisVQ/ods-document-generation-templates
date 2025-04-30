@@ -10,13 +10,22 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v4.2.2
     - name: Run Super-Linter
-      uses: github/super-linter@v7
+      uses: github/super-linter@v7.3.0
+      with:
+        run-linter: html
+        linter-config: .github/linter.yml
+        lint-staged: false
+        disable-cache: true
+        fail-on-warning: false
+        fail-on-error: true
+        enable-all-linters: false
+        linters-to-run: html
+        default_branch: master # Ensure the correct branch is set
       env:
         VALIDATE_HTML: true
         FILES: templates/**/*.html.tmpl
-        OUTPUT_FORMAT: sarif
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Set GitHub token
     - name: Archive Lint Results
       uses: actions/upload-artifact@v4
